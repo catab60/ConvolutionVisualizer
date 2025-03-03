@@ -147,6 +147,11 @@ class ConvolutionVisualizer():
             for j in range(size):
                 self.WeightFrame.winfo_children()[(size - 1) * size + j].config(height=size - (size - 1) * button_size)
 
+        try:
+            self.create_output()
+        except:
+            pass
+
     
         
 
@@ -204,9 +209,13 @@ class ConvolutionVisualizer():
                         g = min(255, int(g + (tint_factor * (255 - g))))
                     hex_color = "#{:02x}{:02x}{:02x}".format(r, g, b)
                     self.cells[pos[0] + i][pos[1] + j].config(bg=hex_color)
-
-
+    
         self.prevKernelPos = pos
+        self.kernelSize = size
+        
+
+
+        
 
     def mainloop(self):
         def sub_process():
